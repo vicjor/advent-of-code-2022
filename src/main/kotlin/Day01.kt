@@ -1,7 +1,5 @@
 
 fun main() {
-    val input = readInput("Input01")
-
     fun getElvesTotalCalories(input : List<String>) : List<Int> {
         val elves = mutableListOf<Int>()
         var current = 0
@@ -25,7 +23,7 @@ fun main() {
     fun part2(input: List<String>) : Int =
         getElvesTotalCalories(input).takeLast(3).sum()
 
-
+    val input = readInput("Input01")
     println(part1(input)) // 68787
     println(part2(input)) // 198041
 }

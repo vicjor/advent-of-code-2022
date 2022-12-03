@@ -1,5 +1,4 @@
 fun main() {
-    val input = readInput("Input02")
     val scoreMap = mapOf(
         "A X" to 4,
         "A Y" to 8,
@@ -30,7 +29,7 @@ fun main() {
     fun part2(input : List<String>) : Int =
          input.sumOf { scoreMap2[it] ?: 0 }
 
-
+    val input = readInput("Input02")
     println(part1(input)) // 17189
     println(part2(input)) // 13490
 }
