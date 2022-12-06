@@ -4,8 +4,8 @@ fun main() {
 
     fun getFinalString(stacks : MutableList<ArrayDeque<Char>>) : String {
         var finalString = ""
-        for (stack in stacks) {
-            finalString += stack.removeLast()
+        stacks.forEach {
+            finalString += it.removeLast()
         }
         return finalString
     }
