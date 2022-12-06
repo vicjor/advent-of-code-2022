@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e768beb5-1f28-4bce-bcdf-e6f1d61f7f80" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Day05.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Day06.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Day05.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Day05.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +57,7 @@
       <recent name="aoc2021" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.Day05Kt">
+  <component name="RunManager" selected="Kotlin.Day06Kt">
     <configuration name="Day01Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Day01Kt" />
       <module name="advent-of-code-2022" />
@@ -92,8 +93,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Day1Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Day1Kt" />
+    <configuration name="Day06Kt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Day06Kt" />
       <module name="advent-of-code-2022" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -101,11 +102,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.Day06Kt" />
         <item itemvalue="Kotlin.Day05Kt" />
         <item itemvalue="Kotlin.Day04Kt" />
         <item itemvalue="Kotlin.Day02Kt" />
         <item itemvalue="Kotlin.Day01Kt" />
-        <item itemvalue="Kotlin.Day1Kt" />
       </list>
     </recent_temporary>
   </component>
@@ -120,7 +121,7 @@
       <workItem from="1669700503996" duration="9548000" />
       <workItem from="1669970399257" duration="6694000" />
       <workItem from="1670140181132" duration="6622000" />
-      <workItem from="1670263925059" duration="4514000" />
+      <workItem from="1670263925059" duration="9520000" />
     </task>
     <servers />
   </component>
