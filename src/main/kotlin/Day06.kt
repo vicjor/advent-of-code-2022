@@ -25,14 +25,7 @@ fun main () {
         return start
     }
 
-    fun rfr(input: String) : Int {
-        input.windowed(size = 4, step = 1) {
-
-            }
-    }
-
     val input = File("src/main/resources","Input06.txt").readText()
     println(part1(input)) // 1134
     println(part2(input)) // 2263
-    println(rfr(input))
 }
