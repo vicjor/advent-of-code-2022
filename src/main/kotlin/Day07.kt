@@ -3,23 +3,40 @@ import java.lang.Error
 fun main() {
     fun part1(commands : List<String>) : Int {
         val root = Directory(null,"/")
-        val fileSystem = FileSystem(root, commands)
-        fileSystem.runScript()
+        val fileSystem = FileSystem(root)
+        fileSystem.runScript(commands)
         return fileSystem.getFileSystemSize()
     }
-    fun part2() {
+    fun part2(commands : List<String>) : Int {
+        val root = Directory(null,"/")
+        val fileSystem = FileSystem(root)
+        fileSystem.runScript(commands)
 
+        val totalDiskSpace = 70000000
+        val requiredDiskSpace = 30000000
+        val freeSpace = totalDiskSpace - root.getTotalSize()
+        val minToDelete = requiredDiskSpace - freeSpace
+        val allDirectories = root.getAllDirectoriesBelow()
+
+        return allDirectories.minOf {
+            if (it.getTotalSize() > minToDelete) {
+                it.getTotalSize()
+            }
+            else totalDiskSpace + 1
+        }
     }
 
-    val input = readInput("Test07").drop(1)
-    println(part1(input)) // 727028 too low, 1972248 too high
+    val input = readInput("Input07").drop(1)
+    println(part1(input)) // 1513699
+    println(part2(input))
+
 }
 
-class FileSystem(val root: Directory, val commands: List<String>) {
+class FileSystem(val root: Directory) {
 
     var cwd = root
 
-    fun runScript() {
+    fun runScript(commands: List<String>) {
         commands.forEach {
             println(it)
             if (it[0] == '$') {
@@ -32,7 +49,7 @@ class FileSystem(val root: Directory, val commands: List<String>) {
 
     fun addChild(input : String) {
         if (input.startsWith("dir")) {
-            cwd.addChild(Directory(cwd, input.substringAfter(" ")))
+            cwd.addDirectory(Directory(cwd, input.substringAfter(" ")))
         } else {
             cwd.addFile(File(
                 input.substringAfter(" "),
@@ -54,15 +71,17 @@ class FileSystem(val root: Directory, val commands: List<String>) {
     }
 
     fun getFileSystemSize() : Int {
-        return root.getTotalSize(100000)
+        return root.getAllDirectoriesBelow()
+            .filter { it.getTotalSize() < 100000 }
+            .sumOf { it.getTotalSize() }
     }
 }
 
 class Directory (val parent: Directory?, val dir : String) {
-    var children = mutableListOf<Directory>()
+    var directories = mutableListOf<Directory>()
     var files = mutableListOf<File>()
-    fun addChild(child : Directory) {
-        children.add(child)
+    fun addDirectory(child : Directory) {
+        directories.add(child)
     }
 
     fun addFile(file : File) {
@@ -73,7 +92,7 @@ class Directory (val parent: Directory?, val dir : String) {
         if (dir == ".." && parent != null) {
             return parent
         }
-        val child = children.find { it.dir == dir }
+        val child = directories.find { it.dir == dir }
         if (child != null) {
             return child
         }
@@ -81,18 +100,14 @@ class Directory (val parent: Directory?, val dir : String) {
 
     }
 
-    fun getTotalSize(max : Int) : Int {
-        var size = 0
-        children.forEach { it ->
-            size += if (it.getTotalSize(max) <= max) {
-                it.getTotalSize(max)
-            } else 0
-            var fileSize = files.sumOf {  it.size }
-            if (size + fileSize <= max) {
-                size += fileSize
-            }
-        }
-        return size
+    fun getTotalSize() : Int {
+        return files.sumOf { it.size } +
+                directories.sumOf { it.getTotalSize() }
+    }
+
+    fun getAllDirectoriesBelow() : List<Directory> {
+        return this.directories +
+                this.directories.flatMap { it.getAllDirectoriesBelow() }
     }
 
     override fun toString(): String {
